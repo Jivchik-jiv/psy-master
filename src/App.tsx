@@ -1,56 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import { onAuthStateChanged } from 'firebase/auth';
+import React, { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import routes from './app/routes';
+import Login from './features/Auth/Login/Login';
+import Signup from './features/Auth/Signup/Signup';
+import Home from './features/Home/Home';
+import Layout from './features/Layout/Layout';
+import { auth } from './firebaseSetup';
 
-function App() {
+const App=()=> {
+  const [isAuthorized, setIsAutorized] = useState(false);
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setIsAutorized(true)
+
+    } else {
+      setIsAutorized(false)
+    }
+  });
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+      <Layout>
+        <Routes>
+          <Route path={routes.home} element={<Home/>}/>
+          <Route path={routes.login} element={<Login/>}/>
+          <Route path={routes.signin} element={<Signup/>}/>
+        </Routes>
+        {isAuthorized?<h1>You are loged in</h1>: <h1>You need to loge in</h1>}
+      </Layout>
     </div>
   );
 }
