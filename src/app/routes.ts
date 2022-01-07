@@ -1,7 +1,12 @@
-const routes={
+type Routes={
+    [key: string]: string
+}
+
+const routes: Routes={
     home: "/",
     login: "/login",
-    signin: "/signin",
+    signup: "/signup",
+    tests: "/tests"
 }
 
 export default routes;

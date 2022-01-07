@@ -1,0 +1,19 @@
+.title{
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #091d09
+}
+
+.text{
+    max-width: 70%;
+    margin: 5px auto;
+    text-align: center;
+}
+
+.navLink{
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+}

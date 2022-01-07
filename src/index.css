@@ -63,3 +63,15 @@ select {
    scroll-behavior: auto !important;
  }
 }
+
+html{
+  background: url('./images/mainBackground.jpg') #091d09 fixed;
+    background-blend-mode:screen;
+  background-size: cover;
+}
+
+body{
+  background: rgba(0, 2, 20, 0.7)
+
+
+}
