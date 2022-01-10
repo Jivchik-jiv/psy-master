@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../../firebaseSetup';
+import { useNavigate } from 'react-router-dom';
 // import firebase from 'firebase/auth';
 
 
@@ -14,7 +15,7 @@ const AuthForm=({type}: Props)=>{
     const [email, setEmail]=React.useState("");
     const [password, setPass]=React.useState("");
     // const [user, setUser]=React.useState<firebase.User | null>(null)
-
+    let navigate=useNavigate();
 
     const handleSubmit=(e: React.FormEvent)=>{
         e.preventDefault();
@@ -22,6 +23,7 @@ const AuthForm=({type}: Props)=>{
         if(type==="signup"){
             createUserWithEmailAndPassword(auth, email, password)
         .then(response=>{
+            navigate('/settings')
         })
         .catch(error=>{
             console.log("Error ",error)

@@ -10,6 +10,7 @@ import Login from './features/Auth/Login/Login';
 import Signup from './features/Auth/Signup/Signup';
 import Home from './features/Home/Home';
 import Layout from './features/Layout/Layout';
+import ProfileSettings from './features/ProfileSettings/ProfileSettings';
 import TestsPage from './features/TestsPage/TestsPage';
 import { auth } from './firebaseSetup';
 
@@ -37,6 +38,7 @@ const App=()=> {
             <Route path={routes.signup} element={<PublicRoute component={Signup}/>}/>
             <Route path={routes.home} element={<PublicRoute component={Home}/>}/>
             <Route path={routes.tests} element={<PrivateRoute component={TestsPage}/>}/>
+            <Route path={routes.settings} element={<PrivateRoute component={ProfileSettings}/>}/>
           </Routes>
           {isAuthorized?<h1>You are loged in</h1>: <h1>You need to loge in</h1>}
         </Layout>

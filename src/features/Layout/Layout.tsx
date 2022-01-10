@@ -32,6 +32,7 @@ const Layout=({children}: Props)=>{
         <div className={styles.contentWrap}>
             <Link to={routes.home}>Main</Link>
             {isAuthorized&&<button type="button" onClick={()=>signOut(auth)}>Sign out</button>}
+            <Link to={routes.settings}>Settings</Link>
             {children}
         </div>
         

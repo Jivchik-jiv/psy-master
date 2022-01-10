@@ -1,0 +1,28 @@
+.wrap{
+   
+}
+
+/* Styles for AvatarSelector */
+
+.selectorWrap{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.itemWrap{
+    max-width: 96px;
+    border: 2px solid black;
+    border-radius: 10px;
+    background: grey;
+
+}
+
+.active{
+    background: red;
+}
+
+
+.radioBtn{
+    display: none;
+}
