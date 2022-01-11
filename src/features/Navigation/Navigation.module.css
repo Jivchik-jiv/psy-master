@@ -1,0 +1,39 @@
+.nav{
+    display: flex;
+    justify-content: space-between;
+}
+
+.link{
+    text-decoration: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    color: #C91BFE;
+}
+
+.btn{
+    border: none;
+    margin: 0 5px;
+    background: #C91BFE;
+    color: #F7DBFF;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
+}
+
+.mainNav{
+    display: flex;
+    align-items: center;
+}
+
+
+.sideNav{
+    display: flex;
+    align-items: center;
+}
+
+.avatar{
+    width: 50px;
+    background: white;
+    border-radius: 100%;
+    padding: 5px;
+    margin-right: 5px;
+}

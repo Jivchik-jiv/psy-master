@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import routes from '../../app/routes';
 import { auth } from '../../firebaseSetup';
 import Header from '../Header/Header';
+import Navigation from '../Navigation/Navigation';
 import styles from './Layout.module.css';
 
 type Props={
@@ -30,9 +31,11 @@ const Layout=({children}: Props)=>{
         <>
         <Header/>
         <div className={styles.contentWrap}>
-            <Link to={routes.home}>Main</Link>
-            {isAuthorized&&<button type="button" onClick={()=>signOut(auth)}>Sign out</button>}
-            <Link to={routes.settings}>Settings</Link>
+            {isAuthorized&&<Navigation/>}
+            {/* <Link to={routes.home}>Main</Link> */}
+            {/* {isAuthorized&&<button type="button" onClick={()=>signOut(auth)}>Sign out</button>} */}
+            {/* <Link to={routes.settings}>Settings</Link> */}
+            {/* <button type="button" onClick={()=>signOut(auth)}>Sign out</button> */}
             {children}
         </div>
         

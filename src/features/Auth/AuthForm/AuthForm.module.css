@@ -1,0 +1,48 @@
+/* .form{
+    display: flex;
+    flex-direction: column;
+} */
+
+.item{
+    margin: 10px auto;
+    text-align: center;
+}
+
+.input{
+    width: 200px;
+    margin: auto;
+    display: block;
+}
+
+.img{
+    width: 70px;
+    margin: 10px auto;
+    border: 2px solid #3A004C;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #ffffff;
+}
+
+.imgSelectorWrap{
+    width: 200px;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.selectorBtn{
+    height: 40px;
+    background: #8601AF;
+    border: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #F7DBFF;
+    font-weight: bold;
+    box-shadow: 0 0 0 2px #8601AF;
+}
+
+.selectorBtn:active{
+    box-shadow: none;
+}
+
+.submitBtn{
+    margin-top: 40px;
+}

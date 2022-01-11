@@ -1,11 +1,23 @@
 import * as React from 'react';
 import AuthForm from '../AuthForm/AuthForm';
+import commonStyles from '../../../app/CommonStyles.module.css';
+import IconButton from '../../../common/IconButton/IconButton';
+import {ReactComponent as MainBtn} from '../../../Icons/main.svg';
+import { useNavigate } from 'react-router-dom';
+import routes from '../../../app/routes';
 
 const Login=()=>{
 
+    const navigate=useNavigate();
+
     return (
         <>
-        <h1>Login Page</h1>
+        <div>
+            <IconButton onClick={()=>navigate(routes.home)}>
+                <MainBtn width="30px" height="30px"/>
+            </IconButton>
+        </div>
+        <h1 className={commonStyles.title}>Login Page</h1>
         <AuthForm type="login"/>
         </>
     )

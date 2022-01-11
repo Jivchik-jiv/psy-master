@@ -1,37 +1,26 @@
-import { onAuthStateChanged } from 'firebase/auth';
-import * as React from 'react';
-import { Navigate } from 'react-router-dom';
-import routes from '../app/routes';
-import { auth } from '../firebaseSetup';
-import { AuthContext } from './AuthProvider';
-import firebase from 'firebase/auth';
-// import ProfileSettings from '../features/ProfileSettings/ProfileSettings';
+import * as React from "react";
+import { Navigate } from "react-router-dom";
+import routes from "../app/routes";
+import { AuthContext } from "./AuthProvider";
 
-type Props={
-    component: React.ComponentType
-}
+type Props = {
+  component: React.ComponentType;
+};
 
-const PrivateRoute=({component, ...rest}: Props)=>{
+const PrivateRoute = ({ component, ...rest }: Props) => {
+  const context = React.useContext(AuthContext);
 
-  const context=React.useContext(AuthContext);
-  
-  const Component= component;
-
-  // if(!!context?.currentUser){
-  //   if(context.currentUser.displayName){
-  //     return <Component {...rest}/>
-  //   }
-  //   return <ProfileSettings/>
-  // }
-
-  // return <Navigate to={routes.home}/>
-
+  const Component = component;
 
   return (
     <>
-      {!!context?.currentUser ? <Component {...rest}/> : <Navigate to={routes.home}/>}
+      {!!context?.currentUser ? (
+        <Component {...rest} />
+      ) : (
+        <Navigate to={routes.home} />
+      )}
     </>
-  )
-}
+  );
+};
 
 export default PrivateRoute;

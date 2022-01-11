@@ -24,8 +24,7 @@ const avatars = [
     "https://img.icons8.com/color/96/000000/naruto.png",
     "https://img.icons8.com/color/96/000000/darth-vader.png",
   ];
-  
-  const initialState = new Array(avatars.length).fill(false);
+
  
 const AvatarSelector= ({setAvatar}:any) => {
     const [selectedAvatar, setSelectedAvatar] = React.useState(0);
@@ -37,11 +36,15 @@ const AvatarSelector= ({setAvatar}:any) => {
         })
     }
 
+    const handleApply=()=>{
+        setAvatar(avatars[selectedAvatar]);
+    }
+
     return (
         <div className={styles.selectorWrap}>
         {avatars.map((url, index) => {
             return (
-            <div className={makeOptionClasses(index)}>
+            <div className={makeOptionClasses(index)} key={url}>
               <label key={url}>
                 <img src={url} alt="" />
                 <input
@@ -49,14 +52,13 @@ const AvatarSelector= ({setAvatar}:any) => {
                   type="radio"
                   value={url}
                 onClick={()=>setSelectedAvatar(index)}
-                // checked={index===selectedAvatar}
                 />
               </label>
             </div>
             );
           })}
 
-          <button type="button" onClick={()=>setAvatar(avatars[selectedAvatar])}>Apply</button>
+          <button type="button" onClick={handleApply}>Apply</button>
         </div>
     )
 }

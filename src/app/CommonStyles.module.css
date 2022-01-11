@@ -17,3 +17,19 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
 }
+
+.btn{
+    width: 80px;
+    background: #3A004C;
+    border: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #F7DBFF;
+    font-weight: bold;
+    box-shadow: 0 0 0 2px #2A0934;
+    display: block;
+    margin: auto;
+}
+
+.btn:active{
+    box-shadow: none; 
+}

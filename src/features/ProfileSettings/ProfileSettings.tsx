@@ -1,51 +1,79 @@
 import * as React from "react";
 import Modal from "../../common/Modal/Modal";
 import { auth } from "../../firebaseSetup";
+import { updateProfile } from "firebase/auth";
 import AvatarSelector from "./AvatarSelector";
 import styles from "./ProfileSettings.module.css";
 import commonStyles from "../../app/CommonStyles.module.css";
+import cx from "classnames";
 
 const ProfileSettings = () => {
   const [name, setName] = React.useState(auth.currentUser?.displayName || "");
-  const [avatar, setAvatar]=React.useState("https://img.icons8.com/color/96/000000/bill-cipher.png");
-  const [showModal, setShowModal]=React.useState(false);
+  const [avatar, setAvatar] = React.useState(
+    auth.currentUser?.photoURL ||
+      "https://img.icons8.com/color/96/000000/bill-cipher.png"
+  );
+  const [showModal, setShowModal] = React.useState(false);
+  const [isNewData, setIsNewData] = React.useState(false);
 
-  const isNewUser = () => {
-    return !auth.currentUser?.displayName;
-  };
+  React.useEffect(()=>{
+    let {displayName, photoURL}=auth.currentUser!;
+    if(displayName !== name || avatar!==photoURL){
+      setIsNewData(true);
+      return;
+    }
+    setIsNewData(false);
+  }, [name, avatar])
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    updateProfile(auth.currentUser!, {
+      displayName: name,
+      photoURL: avatar,
+    }).then((response) => {
+      setIsNewData(false);
+    });
   };
 
-  const handleSelector=(url:string)=>{
+  const handleSelector = (url: string) => {
     setAvatar(url);
-    setShowModal(false)
-  }
+    setShowModal(false);
+  };
 
+  const makeOptionClasses=()=>{
+    return cx({
+        [styles.selectorBtn]: true,
+        [styles.activeBtn]: !isNewData,
+    })
+}
 
   return (
-    <div className={styles.wrap} onSubmit={handleSubmit}>
-      {isNewUser() && (
-        <h3 className={commonStyles.title}>You are registered, please choose nickname and avatar</h3>
-      )}
-      <form>
-        <label>
-          <p>Name</p>
+    <div className={styles.wrap}>
+      <h1 className={commonStyles.title}>Settings Page</h1>
+      <form onSubmit={handleSubmit}>
+        <label className={styles.item}>
+          <p>Change Name</p>
           <input
             type="text"
             value={name}
+            className={styles.input}
             onChange={(e) => setName(e.target.value)}
           />
         </label>
-        <p>Your avatar: </p>
-        <img src={avatar} alt="" />
-        <button type="button" onClick={()=>setShowModal(true)}>Select avatar</button>
-        
-        {showModal&&(<Modal>
+        <div className={styles.imgSelectorWrap} onClick={() => setShowModal(true)}>
+            <img src={avatar} alt="" className={styles.img} />
+            <p>
+              Change avatar
+            </p>
+          </div>
+
+        {showModal && (
+          <Modal>
             <AvatarSelector setAvatar={handleSelector}/>
-        </Modal>)}
-        <button type="submit">Submit</button>
+          </Modal>
+        )}
+        <button type="submit" className={makeOptionClasses()} disabled={!isNewData}>Update profile</button>
       </form>
     </div>
   );

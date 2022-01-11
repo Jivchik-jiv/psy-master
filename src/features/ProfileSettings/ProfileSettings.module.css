@@ -1,5 +1,6 @@
 .wrap{
-   
+   text-align: center;
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 /* Styles for AvatarSelector */
@@ -19,10 +20,56 @@
 }
 
 .active{
-    background: red;
+    background: #C91BFE;
 }
 
 
 .radioBtn{
     display: none;
+}
+
+.item{
+    margin: 10px auto;
+}
+
+.input{
+    margin:auto;
+    display: block;
+}
+
+.imgSelectorWrap{
+    width: 200px;
+    margin: 10px auto 30px;
+    text-align: center;
+    border-top: 2px solid #3A004C;
+    border-bottom: 2px solid #3A004C;
+}
+
+.selectorBtn{
+    height: 40px;
+    background: #8601AF;
+    border: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #F7DBFF;
+    font-weight: bold;
+    box-shadow: 0 0 0 2px #8601AF;
+}
+
+
+.selectorBtn:active{
+    box-shadow: none;
+}
+
+.activeBtn{
+    background-color: rgba(116, 116, 116, 0.363);
+    box-shadow: none;
+}
+
+.img{
+    width: 70px;
+    margin: 10px auto 0;
+    border: 2px solid #3A004C;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #ffffff;
 }
