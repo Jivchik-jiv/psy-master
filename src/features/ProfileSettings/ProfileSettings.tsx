@@ -6,6 +6,8 @@ import AvatarSelector from "./AvatarSelector";
 import styles from "./ProfileSettings.module.css";
 import commonStyles from "../../app/CommonStyles.module.css";
 import cx from "classnames";
+import { AuthContext } from "../../common/AuthProvider";
+import firebase from "firebase/auth";
 
 const ProfileSettings = () => {
   const [name, setName] = React.useState(auth.currentUser?.displayName || "");
@@ -16,6 +18,8 @@ const ProfileSettings = () => {
   const [showModal, setShowModal] = React.useState(false);
   const [isNewData, setIsNewData] = React.useState(false);
 
+  const context=React.useContext(AuthContext)
+
   React.useEffect(()=>{
     let {displayName, photoURL}=auth.currentUser!;
     if(displayName !== name || avatar!==photoURL){
@@ -25,20 +29,22 @@ const ProfileSettings = () => {
     setIsNewData(false);
   }, [name, avatar])
 
-
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     updateProfile(auth.currentUser!, {
       displayName: name,
       photoURL: avatar,
-    }).then((response) => {
+    }).then(() => {
       setIsNewData(false);
+      context?.setCurrentUser({...auth.currentUser as firebase.User})
     });
   };
 
-  const handleSelector = (url: string) => {
-    setAvatar(url);
-    setShowModal(false);
+  const handleSelector = (url: string ) => {
+      setAvatar(url);
+      setShowModal(false);
+    
   };
 
   const makeOptionClasses=()=>{
@@ -69,8 +75,8 @@ const ProfileSettings = () => {
           </div>
 
         {showModal && (
-          <Modal>
-            <AvatarSelector setAvatar={handleSelector}/>
+          <Modal closeModal={()=>setShowModal(false)}>
+            <AvatarSelector setAvatar={handleSelector} closeModal={()=>setShowModal(false)}/>
           </Modal>
         )}
         <button type="submit" className={makeOptionClasses()} disabled={!isNewData}>Update profile</button>

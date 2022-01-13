@@ -7,16 +7,23 @@
     text-decoration: none;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
+    color: #c91bfeab;
+}
+
+.link:hover{
     color: #C91BFE;
 }
 
 .btn{
     border: none;
     margin: 0 5px;
-    background: #C91BFE;
+    background: #c91bfe8f;
     color: #F7DBFF;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;  
+}
+
+.btn:hover{
+    background: #C91BFE;
 }
 
 .mainNav{

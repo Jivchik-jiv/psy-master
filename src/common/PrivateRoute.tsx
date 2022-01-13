@@ -11,7 +11,6 @@ const PrivateRoute = ({ component, ...rest }: Props) => {
   const context = React.useContext(AuthContext);
 
   const Component = component;
-
   return (
     <>
       {!!context?.currentUser ? (

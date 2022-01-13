@@ -1,6 +1,10 @@
 import * as React from 'react';
 import styles from "./ProfileSettings.module.css";
 import cx from "classnames";
+import { AuthContext } from '../../common/AuthProvider';
+import IconButton from '../../common/IconButton/IconButton';
+import {ReactComponent as CloseIcon} from '../../Icons/close.svg';
+import commonStyles from '../../app/CommonStyles.module.css';
 
 const avatars = [
     "https://img.icons8.com/color/96/000000/bill-cipher.png",
@@ -25,40 +29,60 @@ const avatars = [
     "https://img.icons8.com/color/96/000000/darth-vader.png",
   ];
 
- 
-const AvatarSelector= ({setAvatar}:any) => {
-    const [selectedAvatar, setSelectedAvatar] = React.useState(0);
+type Props={
+  setAvatar: (url: string ) => void, 
+  closeModal: () => void
+}
 
-    const makeOptionClasses=(index:number)=>{
+ 
+const AvatarSelector= ({setAvatar, closeModal}:Props) => {
+
+    const context=React.useContext(AuthContext);
+    const avatarUrl=context?.currentUser?.photoURL;
+
+    const [selectedAvatar, setSelectedAvatar] = React.useState(avatarUrl||"");
+
+ 
+
+      const makeOptionClasses=(url:string)=>{
         return cx({
             [styles.itemWrap]: true,
-            [styles.active]: index===selectedAvatar,
+            [styles.active]: url===selectedAvatar,
         })
     }
 
-    const handleApply=()=>{
-        setAvatar(avatars[selectedAvatar]);
-    }
+  
 
     return (
         <div className={styles.selectorWrap}>
-        {avatars.map((url, index) => {
+        <div className={styles.avatarsWrap}>
+        {avatars.map((url) => {
             return (
-            <div className={makeOptionClasses(index)} key={url}>
+            <div className={makeOptionClasses(url)} key={url}>
               <label key={url}>
                 <img src={url} alt="" />
                 <input
                   className={styles.radioBtn}
                   type="radio"
                   value={url}
-                onClick={()=>setSelectedAvatar(index)}
+                onClick={()=>setSelectedAvatar(url)}
                 />
               </label>
             </div>
             );
           })}
-
-          <button type="button" onClick={handleApply}>Apply</button>
+        </div>
+        
+          <div className={styles.btnsWrap}>
+            <button type="button" onClick={()=>setAvatar(selectedAvatar)} className={styles.applyBtn}>Apply</button>
+            {/* <div className={styles.iconBtn}>
+            <IconButton onClick={closeModal}>
+              <CloseIcon width="30px" height="30px"/>
+            </IconButton>
+            </div> */}
+            
+          </div>
+          
         </div>
     )
 }

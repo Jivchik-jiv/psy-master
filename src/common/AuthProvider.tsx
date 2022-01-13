@@ -3,8 +3,9 @@ import * as React from "react";
 import { auth } from "../firebaseSetup";
 import firebase from "firebase/auth";
 
-type Context = {
-  currentUser: firebase.User | null;
+export type Context = {
+  currentUser: firebase.User | null,
+  setCurrentUser: React.Dispatch<React.SetStateAction<firebase.User | null>>, 
 };
 
 type Props = {
@@ -21,17 +22,23 @@ const AuthProvider = ({ children }: Props) => {
 
   React.useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
+      if(user?.photoURL){
+        setCurrentUser({...user});
+      }
+      if(!user){
+        setCurrentUser(null);
+      }
       setPending(false);
     });
   }, []);
+
 
   if (pending) {
     return <>Loading...</>;
   }
 
   return (
-    <AuthContext.Provider value={{ currentUser }}>
+    <AuthContext.Provider value={{ currentUser, setCurrentUser }}>
       {children}
     </AuthContext.Provider>
   );

@@ -3,9 +3,22 @@
    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+.img{
+    width: 70px;
+    margin: 10px auto 0;
+    border: 2px solid #3A004C;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #ffffff;
+}
+
+.img:hover{
+    background: #8601AF;
+}
+
 /* Styles for AvatarSelector */
 
-.selectorWrap{
+.avatarsWrap{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
@@ -45,6 +58,8 @@
     border-bottom: 2px solid #3A004C;
 }
 
+
+
 .selectorBtn{
     height: 40px;
     background: #8601AF;
@@ -65,11 +80,26 @@
     box-shadow: none;
 }
 
-.img{
-    width: 70px;
-    margin: 10px auto 0;
-    border: 2px solid #3A004C;
-    border-radius: 10px;
-    padding: 5px;
-    background-color: #ffffff;
+.btnsWrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.applyBtn{
+    width: 80px;
+    height: 30px;
+    background: #3A004C;
+    border: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #F7DBFF;
+    font-weight: bold;
+    box-shadow: 0 0 0 2px #2A0934;
+    display: block;
+}
+
+
+.iconBtn{
+    margin-right: 20px;
 }

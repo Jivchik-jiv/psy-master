@@ -1,7 +1,6 @@
-/* .form{
-    display: flex;
-    flex-direction: column;
-} */
+.form {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 
 .item{
     margin: 10px auto;
@@ -23,10 +22,16 @@
     background-color: #ffffff;
 }
 
+.img:hover{
+    background: #8601AF;
+}
+
 .imgSelectorWrap{
     width: 200px;
-    margin: 10px auto;
+    margin: 10px auto 30px;
     text-align: center;
+    border-top: 2px solid #3A004C;
+    border-bottom: 2px solid #3A004C;
 }
 
 .selectorBtn{
@@ -44,5 +49,5 @@
 }
 
 .submitBtn{
-    margin-top: 40px;
+    margin:40px auto;
 }

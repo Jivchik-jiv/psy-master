@@ -5,12 +5,11 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../../../firebaseSetup";
-import { useNavigate } from "react-router-dom";
 import styles from "./AuthForm.module.css";
 import commonStyles from "../../../app/CommonStyles.module.css";
-import routes from "../../../app/routes";
 import Modal from "../../../common/Modal/Modal";
 import AvatarSelector from "../../ProfileSettings/AvatarSelector";
+import { AuthContext } from "../../../common/AuthProvider";
 
 type Props = {
   type: "signup" | "login";
@@ -20,15 +19,16 @@ const AuthForm = ({ type }: Props) => {
   const [email, setEmail] = React.useState("");
   const [password, setPass] = React.useState("");
   const [name, setName] = React.useState("");
-  const [avatar, setAvatar] = React.useState(
+  const [avatarUrl, setAvatarUrl] = React.useState(
     "https://img.icons8.com/color/96/000000/bill-cipher.png"
   );
   const [showModal, setShowModal] = React.useState(false);
 
-  let navigate = useNavigate();
+  const context=React.useContext(AuthContext);
 
-  const handleSelector = (url: string) => {
-    setAvatar(url);
+
+  const handleAvatarSelector = (url: string) => {
+    setAvatarUrl(url);
     setShowModal(false);
   };
 
@@ -37,27 +37,28 @@ const AuthForm = ({ type }: Props) => {
 
     if (type === "signup") {
       createUserWithEmailAndPassword(auth, email, password)
-        .then(() => {
-          updateProfile(auth.currentUser!, {
+        .then((response) => {
+          updateProfile(response.user, {
             displayName: name,
-            photoURL: avatar,
+            photoURL: avatarUrl,
           }).then(() => {
-            navigate(routes.tests);
+            context?.setCurrentUser(auth.currentUser);
           });
         })
         .catch((error) => {
-          console.log("Error ", error);
+          console.log("AuthForm signup error ", error);
         });
-    } else {
+    } 
+    if(type==="login") {
       signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
-            navigate(routes.tests);
+        .then((response) => {
         })
         .catch((error) => {
-          console.log("Error ", error);
+          console.log("AuthForm Login error: ", error);
         });
     }
   };
+
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
@@ -93,8 +94,8 @@ const AuthForm = ({ type }: Props) => {
               required
             />
           </label>
-          <div className={styles.imgSelectorWrap}>
-            <img src={avatar} alt="" className={styles.img} />
+          {/* <div className={styles.imgSelectorWrap}>
+            <img src={avatarUrl} alt="" className={styles.img} />
             <button
               type="button"
               onClick={() => setShowModal(true)}
@@ -102,18 +103,24 @@ const AuthForm = ({ type }: Props) => {
             >
               Select avatar
             </button>
+          </div> */}
+          <div className={styles.imgSelectorWrap} onClick={() => setShowModal(true)}>
+            <img src={avatarUrl} alt="" className={styles.img} />
+            <p>
+              Change avatar
+            </p>
           </div>
 
           {showModal && (
-            <Modal>
-              <AvatarSelector setAvatar={handleSelector} />
+            <Modal closeModal={()=>setShowModal(false)}>
+              <AvatarSelector setAvatar={handleAvatarSelector} closeModal={()=>setShowModal(false)}/>
             </Modal>
           )}
         </>
       )}
       <button
         type="submit"
-        className={`${commonStyles.btn} ${styles.submitBtn}`}
+        className={`${styles.submitBtn} ${commonStyles.btn}`}
       >
         {type === "signup" ? "Signup" : "Login"}
       </button>
