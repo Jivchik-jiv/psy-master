@@ -1,39 +1,39 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import routes from "../../app/routes";
 import commonStyles from "../../app/CommonStyles.module.css";
-import styles from './Home.module.css';
+import styles from "./Home.module.css";
+import { Button } from "@mui/material";
+import { StyledContainedBtn, StyledOutlinedBtn } from "../../common/styledMuiComponents/styledForms";
 
 const Home = () => {
+
+  const navigate = useNavigate();
   return (
-    <div>
-      <h2 className={commonStyles.title}>
-        Добро пожаловать в приложение Psy-master
+    <div className={styles.home}>
+      <div className={styles.homeContent}>
+      <h2 className={styles.title}>
+        Добро пожаловать в <span className={styles.specialText}>Psy-master</span>
       </h2>
 
-      <p className={commonStyles.text}>
-        Здесь ты сможешь проверить свои згнания в психологии и возможно узнать
+      <p className={styles.text}>
+        Здесь ты сможешь проверить свои знания в психологии и возможно узнать
         что то новое в этой сфере.
       </p>
-      <div className={styles.authBlock}>
-        <p className={commonStyles.text}>
-          Для того что бы начать, авторизируйся:{" "}
-        </p>
+      <StyledContainedBtn variant="contained" disableElevation onClick={()=>navigate(routes.login)} sx={{
+        marginRight: "20px",
+      }}>Login</StyledContainedBtn>
+      <StyledOutlinedBtn variant="outlined" onClick={()=>navigate(routes.signup)}>Signup</StyledOutlinedBtn>
 
-        <Link to={routes.login} className={commonStyles.navLink}>
-          Login
-        </Link>
-
-        <p className={commonStyles.text}>
-          Впервые с нами? Тогда зарегистируйся:{" "}
-        </p>
-
-        <Link to={routes.signup} className={commonStyles.navLink}>
-          Signup
-        </Link>
+     
       </div>
+      <div className={styles.homeSide}>
+      </div>
+     
     </div>
   );
 };
 
 export default Home;
+
+

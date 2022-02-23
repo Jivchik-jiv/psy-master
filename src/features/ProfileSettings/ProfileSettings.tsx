@@ -6,8 +6,8 @@ import AvatarSelector from "./AvatarSelector";
 import styles from "./ProfileSettings.module.css";
 import commonStyles from "../../app/CommonStyles.module.css";
 import cx from "classnames";
-import { AuthContext } from "../../common/AuthProvider";
-import firebase from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { updatePersonal } from "../../common/AuthRedux/thunks";
 
 const ProfileSettings = () => {
   const [name, setName] = React.useState(auth.currentUser?.displayName || "");
@@ -18,41 +18,49 @@ const ProfileSettings = () => {
   const [showModal, setShowModal] = React.useState(false);
   const [isNewData, setIsNewData] = React.useState(false);
 
-  const context=React.useContext(AuthContext)
+  const dispatch = useDispatch();
 
-  React.useEffect(()=>{
-    let {displayName, photoURL}=auth.currentUser!;
-    if(displayName !== name || avatar!==photoURL){
-      setIsNewData(true);
-      return;
+  React.useEffect(() => {}, []);
+
+  React.useEffect(() => {
+    if (auth.currentUser) {
+      let { displayName, photoURL } = auth.currentUser;
+      if (displayName !== name || avatar !== photoURL) {
+        setIsNewData(true);
+        return;
+      }
+      setIsNewData(false);
     }
-    setIsNewData(false);
-  }, [name, avatar])
+  }, [name, avatar]);
 
-  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    updateProfile(auth.currentUser!, {
-      displayName: name,
-      photoURL: avatar,
-    }).then(() => {
-      setIsNewData(false);
-      context?.setCurrentUser({...auth.currentUser as firebase.User})
+    if (auth.currentUser) {
+      const userId = auth.currentUser.uid;
+
+      updateProfile(auth.currentUser, {
+        displayName: name,
+        photoURL: avatar,
+      }).then(() => {
+        dispatch(
+          updatePersonal({ displayName: name, photoURL: avatar, userId })
+        );
+        setIsNewData(false);
+      });
+    }
+  };
+
+  const handleSelector = (url: string) => {
+    setAvatar(url);
+    setShowModal(false);
+  };
+
+  const makeOptionClasses = () => {
+    return cx({
+      [styles.selectorBtn]: true,
+      [styles.activeBtn]: !isNewData,
     });
   };
-
-  const handleSelector = (url: string ) => {
-      setAvatar(url);
-      setShowModal(false);
-    
-  };
-
-  const makeOptionClasses=()=>{
-    return cx({
-        [styles.selectorBtn]: true,
-        [styles.activeBtn]: !isNewData,
-    })
-}
 
   return (
     <div className={styles.wrap}>
@@ -67,19 +75,26 @@ const ProfileSettings = () => {
             onChange={(e) => setName(e.target.value)}
           />
         </label>
-        <div className={styles.imgSelectorWrap} onClick={() => setShowModal(true)}>
-            <img src={avatar} alt="" className={styles.img} />
-            <p>
-              Change avatar
-            </p>
-          </div>
+        <div
+          className={styles.imgSelectorWrap}
+          onClick={() => setShowModal(true)}
+        >
+          <img src={avatar} alt="" className={styles.img} />
+          <p>Change avatar</p>
+        </div>
 
         {showModal && (
-          <Modal closeModal={()=>setShowModal(false)}>
-            <AvatarSelector setAvatar={handleSelector} closeModal={()=>setShowModal(false)}/>
+          <Modal closeModal={() => setShowModal(false)}>
+            <AvatarSelector setAvatar={handleSelector} />
           </Modal>
         )}
-        <button type="submit" className={makeOptionClasses()} disabled={!isNewData}>Update profile</button>
+        <button
+          type="submit"
+          className={makeOptionClasses()}
+          disabled={!isNewData}
+        >
+          Update profile
+        </button>
       </form>
     </div>
   );

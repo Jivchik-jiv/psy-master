@@ -1,19 +1,20 @@
 import * as React from "react";
+import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import routes from "../app/routes";
-import { AuthContext } from "./AuthProvider";
+import { selectUser } from "./AuthRedux/thunks";
 
-type Props = {
+interface Props {
   component: React.ComponentType;
 };
 
 const PublicRoute = ({ component, ...rest }: Props) => {
-  const context=React.useContext(AuthContext);
+  const user = useSelector(selectUser);
   const Component = component;
 
   return (
     <>
-      {!!context?.currentUser ? <Navigate to={routes.tests} /> : <Component {...rest} />}
+      {user.isAuthorized ? <Navigate to={routes.quizzes} /> : <Component {...rest} /> }
     </>
   )
 

@@ -1,21 +1,37 @@
 import * as React from "react";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  updateProfile,
-} from "firebase/auth";
-import { auth } from "../../../firebaseSetup";
 import styles from "./AuthForm.module.css";
 import commonStyles from "../../../app/CommonStyles.module.css";
 import Modal from "../../../common/Modal/Modal";
 import AvatarSelector from "../../ProfileSettings/AvatarSelector";
-import { AuthContext } from "../../../common/AuthProvider";
+import { Button, TextField } from "@mui/material";
+import {
+  StyledContainedBtn,
+  StyledInput,
+} from "../../../common/styledMuiComponents/styledForms";
 
 type Props = {
   type: "signup" | "login";
+  handleLogin: ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => void;
+  handleSignup: ({
+    email,
+    password,
+    name,
+    avatarUrl,
+  }: {
+    email: string;
+    password: string;
+    name: string;
+    avatarUrl: string;
+  }) => void;
 };
 
-const AuthForm = ({ type }: Props) => {
+const AuthForm = ({ type, handleLogin, handleSignup }: Props) => {
   const [email, setEmail] = React.useState("");
   const [password, setPass] = React.useState("");
   const [name, setName] = React.useState("");
@@ -23,9 +39,6 @@ const AuthForm = ({ type }: Props) => {
     "https://img.icons8.com/color/96/000000/bill-cipher.png"
   );
   const [showModal, setShowModal] = React.useState(false);
-
-  const context=React.useContext(AuthContext);
-
 
   const handleAvatarSelector = (url: string) => {
     setAvatarUrl(url);
@@ -36,94 +49,87 @@ const AuthForm = ({ type }: Props) => {
     e.preventDefault();
 
     if (type === "signup") {
-      createUserWithEmailAndPassword(auth, email, password)
-        .then((response) => {
-          updateProfile(response.user, {
-            displayName: name,
-            photoURL: avatarUrl,
-          }).then(() => {
-            context?.setCurrentUser(auth.currentUser);
-          });
-        })
-        .catch((error) => {
-          console.log("AuthForm signup error ", error);
-        });
-    } 
-    if(type==="login") {
-      signInWithEmailAndPassword(auth, email, password)
-        .then((response) => {
-        })
-        .catch((error) => {
-          console.log("AuthForm Login error: ", error);
-        });
+      handleSignup({ email, password, name, avatarUrl });
+    }
+    if (type === "login") {
+      handleLogin({ email, password });
     }
   };
 
-
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <label className={styles.item}>
-        <p>Email</p>
-        <input
-          type="text"
-          value={email}
+      <div className={styles.inputWrap}>
+        <StyledInput
+          type="email"
+          variant="standard"
+          label="Email"
           onChange={(e) => setEmail(e.target.value)}
           required
-          className={styles.input}
+          value={email}
         />
-      </label>
-      <label className={styles.item}>
-        <p>Password</p>
-        <input
+      </div>
+      <div className={styles.inputWrap}>
+        <StyledInput
           type="password"
-          value={password}
+          variant="standard"
+          label="Password"
           onChange={(e) => setPass(e.target.value)}
           required
-          className={styles.input}
+          value={password}
         />
-      </label>
+      </div>
+
       {type === "signup" && (
         <>
-          <label className={styles.item}>
-            <p>Name</p>
-            <input
+          <div className={styles.inputWrap}>
+            <StyledInput
               type="text"
-              value={name}
-              className={styles.input}
+              variant="standard"
+              label="Name"
               onChange={(e) => setName(e.target.value)}
               required
+              value={name}
             />
-          </label>
-          {/* <div className={styles.imgSelectorWrap}>
+          </div>
+          <div
+            className={styles.imgSelectorWrap}
+            onClick={() => setShowModal(true)}
+          >
             <img src={avatarUrl} alt="" className={styles.img} />
-            <button
-              type="button"
-              onClick={() => setShowModal(true)}
-              className={styles.selectorBtn}
-            >
-              Select avatar
-            </button>
-          </div> */}
-          <div className={styles.imgSelectorWrap} onClick={() => setShowModal(true)}>
-            <img src={avatarUrl} alt="" className={styles.img} />
-            <p>
-              Change avatar
-            </p>
+            <p>Change avatar</p>
           </div>
 
           {showModal && (
-            <Modal closeModal={()=>setShowModal(false)}>
-              <AvatarSelector setAvatar={handleAvatarSelector} closeModal={()=>setShowModal(false)}/>
+            <Modal closeModal={() => setShowModal(false)}>
+              <AvatarSelector setAvatar={handleAvatarSelector} />
             </Modal>
           )}
         </>
       )}
-      <button
+      {/* <button
         type="submit"
         className={`${styles.submitBtn} ${commonStyles.btn}`}
       >
         {type === "signup" ? "Signup" : "Login"}
-      </button>
+      </button> */}
+      <StyledContainedBtn
+        type="submit"
+        variant="contained"
+        disableElevation
+        color="primary"
+      >
+        {type === "signup" ? "Signup" : "Login"}
+      </StyledContainedBtn>
+      {/* <Button variant="contained" type="submit"  sx={{
+        fontWeight: "bold",
+        background: "#8601AF",
+        marginTop: "20px",
+        ":hover": {
+          background: "#C91BFE"
+        }
+      }}>
+      {type === "signup" ? "Signup" : "Login"}
+        </Button> */}
     </form>
   );
 };

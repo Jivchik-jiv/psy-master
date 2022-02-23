@@ -1,28 +1,29 @@
-import { onAuthStateChanged } from "firebase/auth";
 import * as React from "react";
-import { auth } from "../../firebaseSetup";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../common/AuthRedux/thunks";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import styles from "./Layout.module.css";
 
-type Props = {
+interface Props {
   children?: JSX.Element | JSX.Element[];
-};
+}
 
 const Layout = ({ children }: Props) => {
   const [isAuthorized, setIsAuthorized] = React.useState(false);
+  const user = useSelector(selectUser);
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
+  React.useEffect(() => {
+    if (user.displayName) {
       setIsAuthorized(true);
       return;
     }
     setIsAuthorized(false);
-  });
+  }, [user]);
 
   return (
     <>
-      <Header />
+      {isAuthorized && <Header />}
       <div className={styles.contentWrap}>
         {isAuthorized && <Navigation />}
         {children}

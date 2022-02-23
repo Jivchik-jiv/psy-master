@@ -6,8 +6,10 @@ const routes: Routes={
     home: "/",
     login: "/login",
     signup: "/signup",
-    tests: "/tests",
-    settings: "/settings"
+    quizzes: "/quizzes",
+    settings: "/settings",
+    quiz: "/quizzes/:quizId",
+    result: "quizzes/:quizId/result"
 }
 
 export default routes;

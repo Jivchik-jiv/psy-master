@@ -103,3 +103,13 @@
 .iconBtn{
     margin-right: 20px;
 }
+
+
+/* Loader styles */
+
+.loader{
+padding: 40px;
+position: fixed;
+top: 30%;
+left: 35%;
+}

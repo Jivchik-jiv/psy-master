@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import {getAuth} from 'firebase/auth';
+import { getFirestore } from "firebase/firestore";
 
 const app = initializeApp({
       apiKey: "AIzaSyDNiuTKz1A0uoOaAi_POIMl0OtLPwCUk6U",
@@ -9,15 +10,24 @@ const app = initializeApp({
     messagingSenderId: "1065106208791",
     appId: "1:1065106208791:web:b93fbb9485182dd13a8452",
     measurementId: "G-4SFTVMFKHB"
-    // apiKey: process.env.REACT_APP_FIREBASE_KEY,
-    // authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
-    // projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-    // storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-    // messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-    // appId: process.env.REACT_APP_FIREBASE_APP_ID,
-    // measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 });
 
 export const auth=getAuth(app);
 
-export default app;
+export const firebaseDB=getFirestore();
+
+
+// q1- MQoollzRFJ
+// qw1- VeZOBuiiTu
+// qw2- nIlEEx6Kg6
+// qw3- eZXkOLD572
+
+// q2- vwLbNlWCzi
+// qw1- DUOIO3fP9E
+// qw2- 31gROPoYZl
+// qw3 - KhpNKJHVBE
+
+// q3- EfKlveOgbY
+// qw1 - fkk2EoMBn0
+// qw2 - neGZS2402i
+// qw3 - OWUpgwxSsQ

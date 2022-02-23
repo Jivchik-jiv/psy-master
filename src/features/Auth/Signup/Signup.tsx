@@ -1,25 +1,25 @@
 import * as React from 'react';
-import commonStyles from '../../../app/CommonStyles.module.css';
 import { useNavigate } from 'react-router-dom';
-import IconButton from '../../../common/IconButton/IconButton';
-import AuthForm from '../AuthForm/AuthForm';
+import { IconButton } from "@mui/material";
 import {ReactComponent as MainBtn} from '../../../Icons/main.svg';
 import routes from '../../../app/routes';
+import AuthFormWrap from '../AuthForm/AuthFormWrap';
+import styles from '../Auth.module.css';
 
 const Signup=()=>{
 
     const navigate=useNavigate();
 
     return (
-        <>
-         <div>
+        <div className={styles.authPage}>
+         <div className={styles.backButtonWrap}>
             <IconButton onClick={()=>navigate(routes.home)}>
                 <MainBtn width="30px" height="30px"/>
             </IconButton>
         </div>
-        <h1 className={commonStyles.title}>Sign Up Page</h1>
-        <AuthForm type="signup"/>
-        </>
+        <h1 className={styles.titleSignup}>Sign Up Page</h1>
+        <AuthFormWrap type="signup"/>
+        </div>
     )
 
    

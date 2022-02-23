@@ -7,7 +7,7 @@ const MainNav =()=>{
 
     return (
         <div className={styles.mainNav}>
-                <Link to={routes.tests} className={styles.link} >Tests</Link>
+                <Link to={routes.quizzes} className={styles.link} >Quizzes</Link>
         </div>
     )
 }

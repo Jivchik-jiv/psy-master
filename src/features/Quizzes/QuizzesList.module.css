@@ -1,0 +1,16 @@
+.answer{
+    
+}
+
+.correct{
+    background: green;
+}
+
+.correctHint{
+    background: rgb(202, 255, 202);
+}
+
+
+.wrong{
+    background: red;
+}

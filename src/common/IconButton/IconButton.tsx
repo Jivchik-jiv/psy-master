@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styles from './IconButton.module.css';
 
-type Props={
-    children: React.ReactElement<any, any>,
+interface Props {
+    children: React.ReactElement,
     onClick: ()=>void
 }
 

@@ -1,5 +1,35 @@
-.authBlock{
-    margin-top: 30px;
-    padding-top: 10px;
-    border-top: 3px solid #2A0934;
+.home{
+    display: flex;
+    height: 100%;
+    text-align: center;
 }
+.homeContent{
+  width: 60%;  
+  background: rgba(0, 0, 0, 0.445);
+}
+
+.title{
+    margin-top: 120px;
+    text-transform: uppercase;
+    color: white;
+}
+
+.specialText{
+    color: #8601AF;
+}
+
+.text{
+    color: rgb(235, 235, 235);
+    max-width: 70%;
+    margin: 5px auto;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+

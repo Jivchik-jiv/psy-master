@@ -1,40 +1,23 @@
-import { signOut } from "firebase/auth";
 import * as React from "react";
-import { Link } from "react-router-dom";
-import routes from "../../app/routes";
-import { auth } from "../../firebaseSetup";
 import styles from "./Navigation.module.css";
-import { AuthContext } from "../../common/AuthProvider";
-
+import DropMenu from "./DropMenu";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../common/AuthRedux/thunks";
 
 const SideNav = () => {
+  const [showMenu, setShowMenu] = React.useState(false);
 
-  const handleSignout = () => {
-    signOut(auth)
-      .then(() => {})
-      .catch((error) => {
-        console.log("SideNav, Signout error: ", error);
-      });
-  };
-
+  const user = useSelector(selectUser);
   return (
-    <AuthContext.Consumer>
-      {(context) => (
-        <div className={styles.sideNav}>
-          <img
-            src={context?.currentUser?.photoURL || ""}
-            alt="avatar"
-            className={styles.avatar}
-          />
-          <Link to={routes.settings} className={styles.link}>
-            Settings
-          </Link>
-          <button type="button" onClick={handleSignout} className={styles.btn}>
-            Sign out
-          </button>
-        </div>
-      )}
-    </AuthContext.Consumer>
+    <div className={styles.sideNav}>
+      <img
+        src={user.photoURL}
+        alt="avatar"
+        className={styles.avatar}
+        onClick={() => setShowMenu(!showMenu)}
+      />
+      {showMenu && <DropMenu closeMenu={() => setShowMenu(false)} />}
+    </div>
   );
 };
 

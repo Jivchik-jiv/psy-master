@@ -1,44 +1,37 @@
-import * as React from 'react';
-import AuthForm from '../AuthForm/AuthForm';
-import commonStyles from '../../../app/CommonStyles.module.css';
-import IconButton from '../../../common/IconButton/IconButton';
-import {ReactComponent as MainBtn} from '../../../Icons/main.svg';
-import { useNavigate } from 'react-router-dom';
-import routes from '../../../app/routes';
+import * as React from "react";
+import { ReactComponent as MainBtn } from "../../../Icons/main.svg";
+import { useNavigate } from "react-router-dom";
+import routes from "../../../app/routes";
+import AuthFormWrap from "../AuthForm/AuthFormWrap";
+import styles from '../Auth.module.css';
+import { IconButton } from "@mui/material";
 
-const Login=()=>{
+const Login = () => {
+  const navigate = useNavigate();
 
-    const navigate=useNavigate();
-
-    return (
-        <>
-        <div>
-            <IconButton onClick={()=>navigate(routes.home)}>
-                <MainBtn width="30px" height="30px"/>
-            </IconButton>
-        </div>
-        <h1 className={commonStyles.title}>Login Page</h1>
-        <AuthForm type="login"/>
-        </>
-    )
+  return (
+    <div  className={styles.authPage}>
+      <div className={styles.backButtonWrap}>
+        <IconButton onClick={() => navigate(routes.home)}>
+          <MainBtn width="30px" height="30px" />
+        </IconButton>
+      </div>
+      <h1 className={styles.title}>Login</h1>
+      <AuthFormWrap type="login" />
+    </div>
+  );
 };
 
 export default Login;
 
-
-
 // User={
-// email: "test@asd.as",
+// email: "test@bob.test",
 // pass: 11111111
 // }
 
 // User2={
-// email: "test2@asd.as",
-// pass: 22222222
+// email: "test@sam.test",
+// pass: 11111111
 // }
 
 
-// User2={
-// email: "test@test.test",
-// pass: 99999999
-// }

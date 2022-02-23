@@ -64,14 +64,9 @@ select {
  }
 }
 
-/* html{
-  background: url('./images/mainBackground.jpg') #091d09 fixed;
-    background-blend-mode:screen;
-  background-size: cover;
-} */
 
 body{
-  background: #8601AF;
-
-
+  background: black;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  border: 1px solid black
 }

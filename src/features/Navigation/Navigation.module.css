@@ -35,6 +35,7 @@
 .sideNav{
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .avatar{
@@ -44,3 +45,39 @@
     padding: 5px;
     margin-right: 5px;
 }
+
+.avatar:hover{ 
+    background-color: #C91BFE;
+}
+
+/* DropMenu Styles */
+
+
+.dropMenu{
+    min-height: 100px;
+    min-width: 200px;
+    position: absolute;
+    top: 55px;
+    right: 0;
+    background-color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+
+}
+
+
+.profileBlock{
+    display: flex;
+    align-items: center;
+
+}
+
+.secondaryText{
+    font-weight: normal;
+    font-size: .8rem
+}
+.navList {
+    list-style: none;
+    padding: 10px;
+}
+
