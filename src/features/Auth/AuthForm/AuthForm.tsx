@@ -1,9 +1,7 @@
 import * as React from "react";
 import styles from "./AuthForm.module.css";
-import commonStyles from "../../../app/CommonStyles.module.css";
 import Modal from "../../../common/Modal/Modal";
 import AvatarSelector from "../../ProfileSettings/AvatarSelector";
-import { Button, TextField } from "@mui/material";
 import {
   StyledContainedBtn,
   StyledInput,
@@ -106,12 +104,6 @@ const AuthForm = ({ type, handleLogin, handleSignup }: Props) => {
           )}
         </>
       )}
-      {/* <button
-        type="submit"
-        className={`${styles.submitBtn} ${commonStyles.btn}`}
-      >
-        {type === "signup" ? "Signup" : "Login"}
-      </button> */}
       <StyledContainedBtn
         type="submit"
         variant="contained"
@@ -120,16 +112,6 @@ const AuthForm = ({ type, handleLogin, handleSignup }: Props) => {
       >
         {type === "signup" ? "Signup" : "Login"}
       </StyledContainedBtn>
-      {/* <Button variant="contained" type="submit"  sx={{
-        fontWeight: "bold",
-        background: "#8601AF",
-        marginTop: "20px",
-        ":hover": {
-          background: "#C91BFE"
-        }
-      }}>
-      {type === "signup" ? "Signup" : "Login"}
-        </Button> */}
     </form>
   );
 };

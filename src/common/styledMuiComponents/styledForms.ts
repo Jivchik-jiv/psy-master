@@ -3,11 +3,11 @@ import { Button, styled, TextField } from "@mui/material";
 
 export const StyledContainedBtn = styled(Button)({
     fontWeight: "bold",
-    background: "#8601AF",
+    background: "#fece00",
     marginTop: "20px",
-    color: "#fff",
+    color: "#0e0e0e",
     ":hover": {
-              background: "#C91BFE"
+              background: "#ff0"
             }
 })
 
@@ -15,13 +15,13 @@ export const StyledContainedBtn = styled(Button)({
 
 export const StyledOutlinedBtn = styled(Button)({
     fontWeight: "bold",
-    color: "#8601AF",
-    borderColor: "#8601AF",
+    color: "#fece00",
+    borderColor: "#fece00",
     marginTop: "20px",
     borderWidth: "2px",
     ":hover": {
-      color: "#C91BFE",
-      borderColor: "#C91BFE",
+      color: "#ff0",
+      borderColor: "#ff0",
       borderWidth: "2px",
     }
 })

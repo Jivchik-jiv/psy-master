@@ -1,21 +1,25 @@
 .authPage {
-    height: 500px;
-    margin-top: 150px;
     text-align: center;
-    color: white;
 }
 
 .title{
-    margin-top: 120px;
+  
     text-transform: uppercase;
-    color: white;
+    letter-spacing: 0.1em;
 }
+
+.titleWithMarginTop {
+    composes: title;
+    margin-top: 120px;
+}
+
+
 
 .backButtonWrap{
     width: 50px;
-    opacity: 1;
+    /* opacity: 1; */
 }
 
-.backButtonWrap:hover{
+/* .backButtonWrap:hover{
     opacity: .8;
-}
+} */

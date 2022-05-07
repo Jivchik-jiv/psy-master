@@ -10,11 +10,12 @@ interface Props {
 
 const PublicRoute = ({ component, ...rest }: Props) => {
   const user = useSelector(selectUser);
+  
   const Component = component;
 
   return (
     <>
-      {user.isAuthorized ? <Navigate to={routes.quizzes} /> : <Component {...rest} /> }
+      {user.isAuthorized ? <Navigate to={routes.main} /> : <Component {...rest} /> }
     </>
   )
 

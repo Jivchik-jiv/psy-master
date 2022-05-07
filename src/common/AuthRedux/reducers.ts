@@ -49,6 +49,7 @@ interface AddNewUser {
 export const userReducer = createReducer(initialUser, (builder) => {
 
     builder.addCase(getUser.fulfilled, (_, action: GetAction): IUser => {
+       
         return action.payload;
     })
         .addCase(addNewUser.fulfilled, (_, action: AddNewUser) => {

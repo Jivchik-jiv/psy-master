@@ -27,29 +27,29 @@ export const authReducer=createReducer(false, (builder)=>{
     .addDefaultCase((state)=>state)
 })
 
-export const profileReducer=createReducer(initialProfile,(builder)=>{
-    builder
-    .addCase(registerUser.fulfilled, (state, {payload})=>{
-        let {email, displayName, photoURL}: any =payload;
-        return {...state, email, name: displayName, avatarUrl: photoURL}
-     })
-    .addCase(loginUser.fulfilled, (state, {payload})=>{
-        let {email, displayName, photoURL}: any =payload;
-        return {...state, email, name: displayName, avatarUrl: photoURL}
-     })
-    .addCase(updateName, (state, {payload})=>{
-        return {...state, name: payload}
-    })
-    .addCase(updateAvatar, (state, {payload})=>{
-        return {...state, avatarUrl: payload}
-    })
-    .addCase(updateEmail, (state, {payload})=>{
-        return {...state, email: payload}
-    })
-    .addCase(updateProfile, (state)=>{
-        const {email, displayName, photoURL}:any =auth.currentUser;
-        return {...state, email, name: displayName, avatarUrl: photoURL}
-     })
-    .addDefaultCase((state)=>state)
-})
+// export const profileReducer=createReducer(initialProfile,(builder)=>{
+//     builder
+//     .addCase(registerUser.fulfilled, (state, {payload})=>{
+//         let {email, displayName, photoURL}: any =payload;
+//         return {...state, email, name: displayName, avatarUrl: photoURL}
+//      })
+//     .addCase(loginUser.fulfilled, (state, {payload})=>{
+//         let {email, displayName, photoURL}: any =payload;
+//         return {...state, email, name: displayName, avatarUrl: photoURL}
+//      })
+//     .addCase(updateName, (state, {payload})=>{
+//         return {...state, name: payload}
+//     })
+//     .addCase(updateAvatar, (state, {payload})=>{
+//         return {...state, avatarUrl: payload}
+//     })
+//     .addCase(updateEmail, (state, {payload})=>{
+//         return {...state, email: payload}
+//     })
+//     .addCase(updateProfile, (state)=>{
+//         const {email, displayName, photoURL}:any =auth.currentUser;
+//         return {...state, email, name: displayName, avatarUrl: photoURL}
+//      })
+//     .addDefaultCase((state)=>state)
+// })
 

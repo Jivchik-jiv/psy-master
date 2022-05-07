@@ -16,14 +16,14 @@
 .img{
     width: 70px;
     margin: 10px auto;
-    border: 2px solid #3A004C;
+    border: 2px solid #fece00 ;
     border-radius: 10px;
     padding: 5px;
-    background-color: #ffffff;
+    background-color: #1a1a1a;
 }
 
 .img:hover{
-    background: #949494;
+    border-color: #fff;
 }
 
 .imgSelectorWrap{

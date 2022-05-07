@@ -6,6 +6,8 @@ import { firebaseDB } from "../../firebaseSetup";
 import { Grid } from "react-loader-spinner";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../common/AuthRedux/thunks";
+import { StyledContainedBtn } from "../../common/styledMuiComponents/styledForms";
+
 
 type Props = {
   setAvatar: (url: string) => void;
@@ -13,7 +15,7 @@ type Props = {
 
 const AvatarSelector = ({ setAvatar }: Props) => {
 
-  const {photoURL} = useSelector(selectUser);
+  const { photoURL } = useSelector(selectUser);
 
   const [selectedPhotoUrl, setSelectedPhotoUrl] = React.useState(photoURL || "");
   const [avatarsArray, setAvatarsArray] = React.useState<null | string[]>(null);
@@ -58,20 +60,19 @@ const AvatarSelector = ({ setAvatar }: Props) => {
               );
             })}
           </div>
-
-          <div className={styles.btnsWrap}>
-            <button
+            <StyledContainedBtn
               type="button"
+              variant="contained"
               onClick={() => setAvatar(selectedPhotoUrl)}
-              className={styles.applyBtn}
+              disableElevation
+              color="secondary"
             >
               Apply
-            </button>
-          </div>
+            </StyledContainedBtn>
         </>
       ) : (
         <div className={styles.loader}>
-          <Grid color="#C91BFE" height={80} width={80} />
+          <Grid color="#fece00" height={80} width={80} />
         </div>
       )}
     </div>

@@ -1,19 +1,33 @@
 .wrap{
-   text-align: center;
    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+.title {
+    background: #fece00;
+    padding: 0 10px;
+    text-align: right;
+    color: #0e0e0e;
+    letter-spacing: 0.1em;
+    width: 400px;
+}
+
+.form {
+    text-align: center;
+    margin-top: 40px;
 }
 
 .img{
     width: 70px;
     margin: 10px auto 0;
-    border: 2px solid #3A004C;
+    border: 2px solid #fece00;
     border-radius: 10px;
     padding: 5px;
-    background-color: #ffffff;
+    background-color: #1a1a1a;
 }
 
 .img:hover{
-    background: #8601AF;
+    background: #fff;
 }
 
 /* Styles for AvatarSelector */
@@ -33,7 +47,7 @@
 }
 
 .active{
-    background: #C91BFE;
+    background: #1a1a1a;
 }
 
 
@@ -54,8 +68,6 @@
     width: 200px;
     margin: 10px auto 30px;
     text-align: center;
-    border-top: 2px solid #3A004C;
-    border-bottom: 2px solid #3A004C;
 }
 
 
@@ -80,12 +92,6 @@
     box-shadow: none;
 }
 
-.btnsWrap{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-}
 
 .applyBtn{
     width: 80px;

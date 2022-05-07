@@ -1,83 +1,20 @@
 .nav{
-    display: flex;
-    justify-content: space-between;
+    margin-top: 50px;
 }
 
-.link{
+.link {
+    display: block;
     text-decoration: none;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight: bold;
-    color: #c91bfeab;
+    color: #fff;
+    font-size: 1.2rem;
 }
 
-.link:hover{
-    color: #C91BFE;
+.link:hover {
+    color: #fece00;
 }
 
-.btn{
-    border: none;
-    margin: 0 5px;
-    background: #c91bfe8f;
-    color: #F7DBFF;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;  
+.link:active {
+    color: #fffe00;
 }
 
-.btn:hover{
-    background: #C91BFE;
-}
-
-.mainNav{
-    display: flex;
-    align-items: center;
-}
-
-
-.sideNav{
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-.avatar{
-    width: 50px;
-    background: white;
-    border-radius: 100%;
-    padding: 5px;
-    margin-right: 5px;
-}
-
-.avatar:hover{ 
-    background-color: #C91BFE;
-}
-
-/* DropMenu Styles */
-
-
-.dropMenu{
-    min-height: 100px;
-    min-width: 200px;
-    position: absolute;
-    top: 55px;
-    right: 0;
-    background-color: white;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight: bold;
-
-}
-
-
-.profileBlock{
-    display: flex;
-    align-items: center;
-
-}
-
-.secondaryText{
-    font-weight: normal;
-    font-size: .8rem
-}
-.navList {
-    list-style: none;
-    padding: 10px;
-}
 

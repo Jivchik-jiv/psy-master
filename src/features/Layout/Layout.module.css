@@ -1,8 +1,32 @@
 .contentWrap{
-    max-width: 1000px;
+    width: 1000px;
     margin: auto;
-    background-image: url(../../images/Psychology1.jpg);
     background-size: cover;
     height: 500px;
-    margin-top: 150px;
+    border-radius: 10px;
+    background-color: #1a1a1a ;
+}
+
+.isNotAuthorized {
+    display: flex;
+}
+
+/* .isAuthorized{
+   
+} */
+
+.sideBlock {
+    background-image: url(../../images/brain.jpg);
+    background-size: cover;
+    width: 350px;
+    border-radius: 0 10px 10px 0;
+}
+
+.mainBlock {
+    width: 650px;
+}
+
+.loader{
+    text-align: center;
+    margin-top: 210px;
 }

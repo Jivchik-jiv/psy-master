@@ -12,7 +12,6 @@ export const getUser = createAsyncThunk("user/get", async (userId: string) => {
 
     let userSnap = await getDoc(userRef);
 
-
     return {...userSnap.data(), userId} as IUser;
 });
 

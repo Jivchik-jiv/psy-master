@@ -4,23 +4,22 @@ import { auth } from "../../firebaseSetup";
 import { updateProfile } from "firebase/auth";
 import AvatarSelector from "./AvatarSelector";
 import styles from "./ProfileSettings.module.css";
-import commonStyles from "../../app/CommonStyles.module.css";
-import cx from "classnames";
 import { useDispatch } from "react-redux";
 import { updatePersonal } from "../../common/AuthRedux/thunks";
+import { StyledContainedBtn, StyledInput } from "../../common/styledMuiComponents/styledForms";
 
 const ProfileSettings = () => {
   const [name, setName] = React.useState(auth.currentUser?.displayName || "");
   const [avatar, setAvatar] = React.useState(
     auth.currentUser?.photoURL ||
-      "https://img.icons8.com/color/96/000000/bill-cipher.png"
+    "https://img.icons8.com/color/96/000000/bill-cipher.png"
   );
   const [showModal, setShowModal] = React.useState(false);
   const [isNewData, setIsNewData] = React.useState(false);
 
   const dispatch = useDispatch();
 
-  React.useEffect(() => {}, []);
+  React.useEffect(() => { }, []);
 
   React.useEffect(() => {
     if (auth.currentUser) {
@@ -55,26 +54,19 @@ const ProfileSettings = () => {
     setShowModal(false);
   };
 
-  const makeOptionClasses = () => {
-    return cx({
-      [styles.selectorBtn]: true,
-      [styles.activeBtn]: !isNewData,
-    });
-  };
 
   return (
     <div className={styles.wrap}>
-      <h1 className={commonStyles.title}>Settings Page</h1>
-      <form onSubmit={handleSubmit}>
-        <label className={styles.item}>
-          <p>Change Name</p>
-          <input
-            type="text"
-            value={name}
-            className={styles.input}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </label>
+      <h1 className={styles.title}>Settings</h1>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <StyledInput
+          type="text"
+          variant="standard"
+          label="Change Name"
+          onChange={(e) => setName(e.target.value)}
+          required
+          value={name}
+        />
         <div
           className={styles.imgSelectorWrap}
           onClick={() => setShowModal(true)}
@@ -88,13 +80,15 @@ const ProfileSettings = () => {
             <AvatarSelector setAvatar={handleSelector} />
           </Modal>
         )}
-        <button
+        <StyledContainedBtn
           type="submit"
-          className={makeOptionClasses()}
+          variant="contained"
+          disableElevation
+          color="primary"
           disabled={!isNewData}
         >
           Update profile
-        </button>
+        </StyledContainedBtn>
       </form>
     </div>
   );

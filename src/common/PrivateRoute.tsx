@@ -31,7 +31,7 @@ onAuthStateChanged(auth, (user)=>{
   const Component = component;
 
   if(isLoading){
-    return <CircularProgress color="secondary" />
+    return <CircularProgress color="primary" />
   }
 
   return (
@@ -39,7 +39,7 @@ onAuthStateChanged(auth, (user)=>{
       {userRedux.isAuthorized ? (
          <Component {...rest} />
       ) : (
-        <Navigate to={routes.home} />
+        <Navigate to={routes.welcome  } />
       )}
     </>
   );

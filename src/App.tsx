@@ -9,12 +9,13 @@ import PrivateRoute from "./common/PrivateRoute";
 import PublicRoute from "./common/PublicRoute";
 import Login from "./features/Auth/Login/Login";
 import Signup from "./features/Auth/Signup/Signup";
-import Home from "./features/Home/Home";
+import Welcome from "./features/Welcome/Welcome";
 import Layout from "./features/Layout/Layout";
 import ProfileSettings from "./features/ProfileSettings/ProfileSettings";
 import QuizResultView from "./features/Quizzes/QuizResultView";
 import QuizView from "./features/Quizzes/QuizView";
 import QuizzesListWrap from "./features/Quizzes/QuizzesListWrap";
+import Main from "./features/Main/Main"
 import { auth } from "./firebaseSetup";
 
 const App = () => {
@@ -30,7 +31,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className="App">
+    <div className="app">
         <Layout>
           <Routes>
             <Route
@@ -42,9 +43,13 @@ const App = () => {
               element={<PublicRoute component={Signup} />}
             />
             <Route
-              path={routes.home}
-              element={<PublicRoute component={Home} />}
+              path={routes.welcome}
+              element={<PublicRoute component={Welcome} />}
             />
+            <Route 
+              path={routes.main}
+              element={<PrivateRoute component = {Main}/>}
+              />
             <Route
               path={routes.quizzes}
               element={<PrivateRoute component={QuizzesListWrap} />}

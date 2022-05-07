@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IconButton } from "@mui/material";
-import {ReactComponent as MainBtn} from '../../../Icons/main.svg';
 import routes from '../../../app/routes';
 import AuthFormWrap from '../AuthForm/AuthFormWrap';
 import styles from '../Auth.module.css';
+import HomeIcon from '@mui/icons-material/Home';
 
 const Signup=()=>{
 
@@ -13,11 +13,11 @@ const Signup=()=>{
     return (
         <div className={styles.authPage}>
          <div className={styles.backButtonWrap}>
-            <IconButton onClick={()=>navigate(routes.home)}>
-                <MainBtn width="30px" height="30px"/>
-            </IconButton>
+         <IconButton color="primary" aria-label="back to home page" onClick={() => navigate(routes.welcome)} size="large">
+          <HomeIcon fontSize="inherit" />
+        </IconButton>
         </div>
-        <h1 className={styles.titleSignup}>Sign Up Page</h1>
+        <h1 className={styles.title}>Sign Up Page</h1>
         <AuthFormWrap type="signup"/>
         </div>
     )
