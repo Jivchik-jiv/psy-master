@@ -1,4 +1,3 @@
-import firebase from "firebase/auth";
 import { RootState } from './../../app/store';
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { doc, getDoc, setDoc } from "firebase/firestore";
@@ -6,14 +5,6 @@ import { firebaseDB } from "../../firebaseSetup";
 import { IUser } from "../../interfaces";
 
 
-export const getUser = createAsyncThunk("user/get", async (userId: string) => {
-
-    const userRef = doc(firebaseDB, "users", userId);
-
-    let userSnap = await getDoc(userRef);
-
-    return {...userSnap.data(), userId} as IUser;
-});
 
 interface UpdateResult {
     userData: IUser,
@@ -31,6 +22,24 @@ interface UpdatePersonal {
     photoURL: string,
     userId: string,
 };
+
+interface NewUserArg {
+    displayName: string,
+    photoURL: string,
+    userId: string,
+    email: string
+    
+}
+
+
+export const getUser = createAsyncThunk("user/get", async (userId: string) => {
+
+    const userRef = doc(firebaseDB, "users", userId);
+
+    let userSnap = await getDoc(userRef);
+
+    return {...userSnap.data(), userId} as IUser;
+});
 
 
 
@@ -78,25 +87,23 @@ export const updatePersonal = createAsyncThunk("user/update/personal", ({ userId
 
 });
 
-export const addNewUser = createAsyncThunk("user/addNew", async (user: firebase.User) => {
-    const { displayName, email, photoURL, uid } = user;
 
-    const newUserObj: IUser = {
-        userId: uid,
-        displayName: displayName || "",
-        email: email || "",
-        photoURL: photoURL || "",
+export const addNewUser = createAsyncThunk("user/addNew", async (userObj: NewUserArg) => {
+    const { displayName, email, photoURL, userId } = userObj;
+
+    const newUserObj = {
+        displayName,
+        email,
+        photoURL,
         points: 0,
         results: {},
         isAuthorized: true
     }
 
-    const userRef = doc(firebaseDB, "users", uid);
-    const userSnap = await setDoc(userRef, newUserObj);
+    const userRef = doc(firebaseDB, "users", userId);
+    setDoc(userRef, newUserObj);
 
-    console.log("Auth thank- addNewUser", userSnap);
-
-    return newUserObj;
+    return {...newUserObj, userId};
 
 })
 

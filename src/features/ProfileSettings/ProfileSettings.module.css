@@ -15,6 +15,12 @@
 .form {
     text-align: center;
     margin-top: 40px;
+    background-color: #2a2a2a;
+    width: 600px;
+    height: 300px;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 5px;
 }
 
 .img{
@@ -68,46 +74,6 @@
     width: 200px;
     margin: 10px auto 30px;
     text-align: center;
-}
-
-
-
-.selectorBtn{
-    height: 40px;
-    background: #8601AF;
-    border: none;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: #F7DBFF;
-    font-weight: bold;
-    box-shadow: 0 0 0 2px #8601AF;
-}
-
-
-.selectorBtn:active{
-    box-shadow: none;
-}
-
-.activeBtn{
-    background-color: rgba(116, 116, 116, 0.363);
-    box-shadow: none;
-}
-
-
-.applyBtn{
-    width: 80px;
-    height: 30px;
-    background: #3A004C;
-    border: none;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: #F7DBFF;
-    font-weight: bold;
-    box-shadow: 0 0 0 2px #2A0934;
-    display: block;
-}
-
-
-.iconBtn{
-    margin-right: 20px;
 }
 
 

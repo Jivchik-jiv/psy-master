@@ -19,27 +19,27 @@ type Props = {
   handleSignup: ({
     email,
     password,
-    name,
-    avatarUrl,
+    displayName,
+    photoURL,
   }: {
     email: string;
     password: string;
-    name: string;
-    avatarUrl: string;
+    displayName: string;
+    photoURL: string;
   }) => void;
 };
 
 const AuthForm = ({ type, handleLogin, handleSignup }: Props) => {
   const [email, setEmail] = React.useState("");
   const [password, setPass] = React.useState("");
-  const [name, setName] = React.useState("");
-  const [avatarUrl, setAvatarUrl] = React.useState(
+  const [displayName, setDisplayName] = React.useState("");
+  const [photoURL, setPhotoURL] = React.useState(
     "https://img.icons8.com/color/96/000000/bill-cipher.png"
   );
   const [showModal, setShowModal] = React.useState(false);
 
   const handleAvatarSelector = (url: string) => {
-    setAvatarUrl(url);
+    setPhotoURL(url);
     setShowModal(false);
   };
 
@@ -47,7 +47,7 @@ const AuthForm = ({ type, handleLogin, handleSignup }: Props) => {
     e.preventDefault();
 
     if (type === "signup") {
-      handleSignup({ email, password, name, avatarUrl });
+      handleSignup({ email, password, displayName, photoURL });
     }
     if (type === "login") {
       handleLogin({ email, password });
@@ -84,16 +84,16 @@ const AuthForm = ({ type, handleLogin, handleSignup }: Props) => {
               type="text"
               variant="standard"
               label="Name"
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setDisplayName(e.target.value)}
               required
-              value={name}
+              value={displayName}
             />
           </div>
           <div
             className={styles.imgSelectorWrap}
             onClick={() => setShowModal(true)}
           >
-            <img src={avatarUrl} alt="" className={styles.img} />
+            <img src={photoURL} alt="" className={styles.img} />
             <p>Change avatar</p>
           </div>
 

@@ -2,7 +2,6 @@ import * as React from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  updateProfile,
 } from "firebase/auth";
 import { auth } from "../../../firebaseSetup";
 import AuthForm from "./AuthForm";
@@ -16,8 +15,8 @@ type Props = {
 type Signup = {
   email: string;
   password: string;
-  name: string;
-  avatarUrl: string;
+  displayName: string;
+  photoURL: string;
 };
 
 type Login = {
@@ -28,17 +27,14 @@ type Login = {
 const AuthFormWrap = ({ type }: Props) => {
   const dispatch = useDispatch();
 
-  const handleSignup = ({ email, password, name, avatarUrl }: Signup) => {
+  const handleSignup = ({ email, password, displayName, photoURL }: Signup) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((response: any) => {
-        updateProfile(response.user, {
-          displayName: name,
-          photoURL: avatarUrl,
-        }).then(() => {
-          if (auth.currentUser) {
-            dispatch(addNewUser(auth.currentUser));
+           if (auth.currentUser) {
+             const { uid: userId} = auth.currentUser;
+            dispatch(addNewUser({email, userId, displayName, photoURL}));
           }
-        });
+
       })
       .catch((error: any) => {
         console.log("AuthForm signup error ", error);
@@ -47,8 +43,7 @@ const AuthFormWrap = ({ type }: Props) => {
 
   const handleLogin = ({ email, password }: Login) => {
     signInWithEmailAndPassword(auth, email, password)
-      .then((responce) => {
-        console.log("AuthForm login responce ", responce);
+      .then(() => {
       })
       .catch((error: any) => {
         console.log("AuthForm Login error: ", error);

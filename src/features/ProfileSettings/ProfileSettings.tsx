@@ -40,7 +40,8 @@ const ProfileSettings = () => {
       updateProfile(auth.currentUser, {
         displayName: name,
         photoURL: avatar,
-      }).then(() => {
+      }).then((response) => {
+        console.log(response);
         dispatch(
           updatePersonal({ displayName: name, photoURL: avatar, userId })
         );

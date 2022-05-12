@@ -4,7 +4,7 @@ import { selectUser } from "../../common/AuthRedux/thunks";
 import styles from "./Main.module.css";
 import GradeIcon from '@mui/icons-material/Grade';
 
-const getStatus = (points: number):string => {
+export const getStatus = (points: number):string => {
    if(points < 100){
        return "Beginner"
    }

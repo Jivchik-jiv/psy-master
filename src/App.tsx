@@ -17,13 +17,15 @@ import QuizView from "./features/Quizzes/QuizView";
 import QuizzesListWrap from "./features/Quizzes/QuizzesListWrap";
 import Main from "./features/Main/Main"
 import { auth } from "./firebaseSetup";
+import Wiki from "./features/Wiki/Wiki"
+import RatingWrap from "./features/Rating/RatingWrap"
 
 const App = () => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      if (user?.displayName) {
+      if (user) {
         dispatch(getUser(user.uid));
         return;
       }
@@ -57,6 +59,14 @@ const App = () => {
             <Route
               path={routes.settings}
               element={<PrivateRoute component={ProfileSettings} />}
+            />
+            <Route 
+              path={routes.wiki}
+              element={<PrivateRoute component={Wiki}/>}
+            />
+              <Route 
+              path={routes.rating}
+              element={<PrivateRoute component={RatingWrap}/>}
             />
             <Route
               path={routes.quiz}
