@@ -4,6 +4,7 @@ import * as React from "react";
 import { firebaseDB } from "../../firebaseSetup";
 import { IQuizFromList } from "../../interfaces";
 import QuizzesList from "./QuizzesList";
+import styles from "./QuizzesList.module.css";
 
 const QuizzesListWrap = () => {
   const [quizzes, setQuizzes] = React.useState<null | IQuizFromList[]>(null);
@@ -21,13 +22,13 @@ const QuizzesListWrap = () => {
   }, []);
 
   return (
-    <>
+    <div>
       {quizzes ? (
         <QuizzesList quizzes={quizzes} />
       ) : (
         <CircularProgress color="secondary" />
       )}
-    </>
+    </div>
   );
 };
 

@@ -26,6 +26,7 @@ type Login = {
 
 const AuthFormWrap = ({ type }: Props) => {
   const dispatch = useDispatch();
+  const [isUnicEmail, setIsUnicEmail] = React.useState(true);
 
   const handleSignup = ({ email, password, displayName, photoURL }: Signup) => {
     createUserWithEmailAndPassword(auth, email, password)
@@ -37,7 +38,9 @@ const AuthFormWrap = ({ type }: Props) => {
 
       })
       .catch((error: any) => {
-        console.log("AuthForm signup error ", error);
+        if (error.code === "auth/email-already-in-use"){
+          setIsUnicEmail(false);
+        }
       });
   };
 
@@ -55,6 +58,8 @@ const AuthFormWrap = ({ type }: Props) => {
       type={type}
       handleLogin={handleLogin}
       handleSignup={handleSignup}
+      isUnicEmail = {isUnicEmail}
+      setIsUnicEmail = {setIsUnicEmail}
     />
   );
 };

@@ -27,9 +27,12 @@ type Props = {
     displayName: string;
     photoURL: string;
   }) => void;
+  isUnicEmail: boolean,
+  setIsUnicEmail: React.Dispatch<React.SetStateAction<boolean>>
 };
 
-const AuthForm = ({ type, handleLogin, handleSignup }: Props) => {
+
+const AuthForm = ({ type, handleLogin, handleSignup, isUnicEmail, setIsUnicEmail }: Props) => {
   const [email, setEmail] = React.useState("");
   const [password, setPass] = React.useState("");
   const [displayName, setDisplayName] = React.useState("");
@@ -54,10 +57,15 @@ const AuthForm = ({ type, handleLogin, handleSignup }: Props) => {
     }
   };
 
+ const handleEmailError = (emailValue: string) => {
+  setEmail(emailValue);
+  setIsUnicEmail(true);
+ }
+
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <div className={styles.inputWrap}>
-        <StyledInput
+       {isUnicEmail ? <StyledInput
           type="email"
           variant="standard"
           label="Email"
@@ -65,6 +73,14 @@ const AuthForm = ({ type, handleLogin, handleSignup }: Props) => {
           required
           value={email}
         />
+        : <StyledInput
+          error
+          variant="standard"
+          label="Error"
+          helperText="This email is already used."
+          onChange={(e) => handleEmailError(e.target.value)}
+          value={email}
+        />}
       </div>
       <div className={styles.inputWrap}>
         <StyledInput

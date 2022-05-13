@@ -3,16 +3,16 @@ type Routes={
 }
 
 const routes: Routes={
-    welcome: "/",
-    login: "/login",
-    signup: "/signup",
-    main: "/main",
-    quizzes: "/quizzes",
-    rating: "/rating",
-    wiki: "/wiki",
-    settings: "/settings",
-    quiz: "/quizzes/:quizId",
-    result: "quizzes/:quizId/result"
+    welcome: "/psy-master",
+    login: "/psy-master/login",
+    signup: "/psy-master/signup",
+    main: "/psy-master/main",
+    quizzes: "/psy-master/quizzes",
+    rating: "/psy-master/rating",
+    wiki: "/psy-master/wiki",
+    settings: "/psy-master/settings",
+    quiz: "/psy-master/quizzes/:quizId",
+    result: "/psy-masterquizzes/:quizId/result"
 }
 
 export default routes;
