@@ -16,10 +16,17 @@
     width: 400px;
 }
 
+.list {
+    padding: 0;
+}
+
 .listItem {
     display: flex;
     padding: 4px 10px;
     border-radius: 3px;
+    align-items: center;
+    border: 1px solid #fece00;
+    margin: 5px 0;
 }
 .listItem:hover{
     background-color: #3a3a3a;;
@@ -31,6 +38,18 @@
     font-size: 1.5rem;
     width: 250px;
 
+
+}
+
+.progress {
+    width: 210px;
+    height: 15px;
+
+}
+
+.result {
+    width: 100px;
+    text-align: center;
 }
 
 /* .link:hover {

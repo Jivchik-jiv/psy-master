@@ -1,3 +1,4 @@
+import { LinearProgress } from "@mui/material";
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -21,7 +22,10 @@ const QuizzesList = ({ quizzes }: Props) => {
           {quizzes.map((quiz) => (
             <li key={quiz.quizId} className={styles.listItem}>
               <Link to={quiz.quizId} className={styles.link}> {quiz.title} </Link>
-              <div className={styles.result}>{results[quiz.quizId] && <span>Completed! Result: {results[quiz.quizId]}&#37;</span>}</div>
+              <div className={styles.progress}>
+                <LinearProgress variant="determinate" value={results[quiz.quizId] || 0}  sx = {{height: "100%"}}/>
+              </div>
+              <div className={styles.result}>{<span>{results[quiz.quizId] || 0}&#37;</span>}</div>
             </li>
           ))}
         </ol>
