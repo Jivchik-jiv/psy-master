@@ -56,9 +56,40 @@
     color: #fece00;
 } */
 
-.answer{
-    
+/* Styles for quiz */
+
+.answerItem{
+    background: #fff;
+    color: #0e0e0e;
+    padding: 5px;
+    border-radius: 5px;
 }
+
+.answersList {
+    list-style: none;
+    padding: none;
+    display: grid;
+    grid-template-columns: 270px 270px;
+    grid-template-rows: 65px 65px;
+    column-gap: 20px;
+    row-gap: 20px;
+}
+
+.selectedItem {
+    background-color: #fece00;
+}
+
+.btnWrap {
+    text-align: right;
+}
+
+/* .answersList{
+    list-style: none;
+    padding: none;
+    display: grid;
+    grid-template-columns: 280px 280px;
+    grid-template-rows: 65px 65px;
+} */
 
 .correct{
     background: green;
@@ -72,3 +103,41 @@
 .wrong{
     background: red;
 }
+
+
+
+.titleWrap {
+    display: flex;
+    width: 800px;
+    justify-content: space-between;
+}
+
+.qTitle {
+    background: #fece00;
+    height: 48px;
+    padding: 0 10px;
+    color: #0e0e0e;
+    letter-spacing: 0.1em;
+    line-height: 48px;
+    width: 400px;
+}
+
+.qCount {
+    line-height: 48px;
+    color: #fece00;
+}
+
+.question {
+    height: 70px;
+    text-align: center;
+}
+
+.answerInput {
+    display: none;
+}
+
+.answerText {
+    display: block;
+    height: 100%;
+}
+

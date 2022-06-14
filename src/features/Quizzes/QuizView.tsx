@@ -91,10 +91,13 @@ const QuizView = () => {
     <>
       {!isCompleted && (
         <div className={styles.quiz}>
-          <h1>{quiz.title}</h1>
-          <p>
-            Question {currentQuestionIndex + 1}/{totalQuestions}
-          </p>
+          <div className={styles.titleWrap}>
+              <h2 className = {styles.qTitle} >{quiz.title}</h2>
+              <p className={styles.qCount}>
+                Question {currentQuestionIndex + 1}/{totalQuestions}
+              </p>
+          </div>
+         
           <QuestionView
             questionObj={quiz.questions[currentQuestionIndex]}
             moveToNextquestion={moveToNextQuestion}

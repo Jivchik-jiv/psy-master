@@ -2,6 +2,7 @@ import * as React from "react";
 import { IQuizQuestion } from "../../interfaces";
 import styles from "./QuizzesList.module.css";
 import cx from "classnames";
+import { StyledContainedBtn } from "../../common/styledMuiComponents/styledForms";
 
 interface Props {
   questionObj: IQuizQuestion;
@@ -68,7 +69,8 @@ const QuestionView = ({
   const makeOptionalClasses = (answer: string) => {
     if (answer === selectedAnswer) {
       return cx({
-        [styles.answer]: true,
+        [styles.answerItem]: true,
+        [styles.selectedItem]: true,
         [styles.correct]: isAnswered && selectedAnswer === correctAnswer,
         [styles.wrong]: isAnswered && selectedAnswer !== correctAnswer,
       });
@@ -84,26 +86,28 @@ const QuestionView = ({
     }
 
     return cx({
-      [styles.answer]: true,
+      [styles.answerItem]: true,
+      [styles.selectedItem]: false,
     });
   };
 
   return (
-    <div>
-      <h2>{question}</h2>
+    <div className={styles.quizzesWrap}>
+      <p className={styles.question}>{question}</p>
 
       <form onSubmit={handleSubmit}>
-        <ul>
+        <ul className={styles.answersList}>
           {answers.map((answer, answerIndex) => {
             return (
               <li key={answer} className={makeOptionalClasses(answer)}>
                 <label>
-                  <span>{answer}</span>
+                  <span className={styles.answerText}>{answer}</span>
                   <input
                     type="radio"
                     onChange={() => handleAnswersStatus(answerIndex, answer)}
                     checked={answersStatus[answerIndex]}
                     disabled={isAnswered}
+                    className={styles.answerInput}
                   />
                 </label>
                 {isAnswered &&
@@ -121,17 +125,26 @@ const QuestionView = ({
             );
           })}
         </ul>
-        <button type="submit" disabled={!isSelected || isAnswered}>
-          Submit
-        </button>
+        <div className={styles.btnWrap}>
+        { isAnswered ? <StyledContainedBtn variant="contained" disableElevation onClick={goNext} sx={{
+        marginBottom: "10px", marginTop: "10px"
+      }}>Next</StyledContainedBtn>
+       :     <StyledContainedBtn variant="contained" disableElevation type="submit" sx={{
+        marginBottom: "10px", marginTop: "10px"
+      }}>Submit</StyledContainedBtn>
+         }
+        </div>
+       
+
+    
       </form>
-      {isLastQuestion ? 
+      {/* {isLastQuestion ? 
       <button type="button" onClick={goToResult} disabled={!isAnswered}>
         See result
       </button>
       :<button type="button" onClick={goNext} disabled={!isAnswered}>
         Next
-      </button>}
+      </button>} */}
     
     </div>
   );

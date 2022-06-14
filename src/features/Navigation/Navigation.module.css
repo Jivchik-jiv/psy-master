@@ -1,16 +1,20 @@
 .nav{
-    margin-top: 50px;
+    background-color: #2a2a2a;
+    width: 400px;
+    margin:  50px auto 0;
+    padding: 20px;
+    border-radius: 5px;
 }
 
 .link {
-    display: block;
     text-decoration: none;
     color: #fff;
     font-size: 1.2rem;
+    display: block;
 }
 
 .link:hover {
-    color: #fece00;
+    background-color: #3a3a3a;
 }
 
 .link:active {
