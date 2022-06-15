@@ -59,9 +59,11 @@ const QuestionView = ({
     
   };
 
-  const goNext = () => {
+  const goNext = (e: React.FormEvent) => {
+    e.preventDefault();
     setIsSelected(false);
     setIsAnswered(false);
+    setSelectedAnswer(null);
     setAnswersStatus([false, false, false, false]);
     moveToNextquestion();
   };
@@ -78,8 +80,8 @@ const QuestionView = ({
 
     if (isAnswered) {
       return cx({
+        [styles.answerItem]: true,
         [styles.correctHint]:
-          isAnswered &&
           selectedAnswer !== correctAnswer &&
           answer === correctAnswer,
       });
@@ -110,7 +112,7 @@ const QuestionView = ({
                     className={styles.answerInput}
                   />
                 </label>
-                {isAnswered &&
+                {/* {isAnswered &&
                   answer === correctAnswer &&
                   selectedAnswer === correctAnswer && <p>Correct!</p>}
                 {isAnswered &&
@@ -120,31 +122,27 @@ const QuestionView = ({
                   )}
                 {isAnswered &&
                   answer !== correctAnswer &&
-                  answer === selectedAnswer && <p>You wrong!</p>}
+                  answer === selectedAnswer && <p>You wrong!</p>} */}
               </li>
             );
           })}
         </ul>
         <div className={styles.btnWrap}>
-        { isAnswered ? <StyledContainedBtn variant="contained" disableElevation onClick={goNext} sx={{
-        marginBottom: "10px", marginTop: "10px"
-      }}>Next</StyledContainedBtn>
-       :     <StyledContainedBtn variant="contained" disableElevation type="submit" sx={{
-        marginBottom: "10px", marginTop: "10px"
-      }}>Submit</StyledContainedBtn>
-         }
+          {!isAnswered ? <StyledContainedBtn variant="contained" disableElevation type="submit" sx={{
+              marginBottom: "10px", marginTop: "10px"
+            }}>Submit</StyledContainedBtn>
+            : !isLastQuestion ? <StyledContainedBtn variant="contained" disableElevation onClick={goNext} sx={{
+            marginBottom: "10px", marginTop: "10px"
+          }} type="button">Next</StyledContainedBtn>
+            : <StyledContainedBtn variant="contained" disableElevation onClick={goToResult} sx={{
+              marginBottom: "10px", marginTop: "10px"
+            }} type="button">See result</StyledContainedBtn>
+          }
         </div>
        
 
     
       </form>
-      {/* {isLastQuestion ? 
-      <button type="button" onClick={goToResult} disabled={!isAnswered}>
-        See result
-      </button>
-      :<button type="button" onClick={goNext} disabled={!isAnswered}>
-        Next
-      </button>} */}
     
     </div>
   );
