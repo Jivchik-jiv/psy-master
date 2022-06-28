@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/psy-master/static/css/main.ea6a37ac.css",
-    "main.js": "/psy-master/static/js/main.036f6d00.js",
+    "main.css": "/psy-master/static/css/main.afbca4e9.css",
+    "main.js": "/psy-master/static/js/main.30a649f8.js",
     "static/media/brain.jpg": "/psy-master/static/media/brain.a76525971a5fd9220ade.jpg",
     "index.html": "/psy-master/index.html",
     "static/media/close.svg": "/psy-master/static/media/close.6e8844354220551459345296a4b8e40a.svg",
-    "main.ea6a37ac.css.map": "/psy-master/static/css/main.ea6a37ac.css.map",
-    "main.036f6d00.js.map": "/psy-master/static/js/main.036f6d00.js.map"
+    "main.afbca4e9.css.map": "/psy-master/static/css/main.afbca4e9.css.map",
+    "main.30a649f8.js.map": "/psy-master/static/js/main.30a649f8.js.map"
   },
   "entrypoints": [
-    "static/css/main.ea6a37ac.css",
-    "static/js/main.036f6d00.js"
+    "static/css/main.afbca4e9.css",
+    "static/js/main.30a649f8.js"
   ]
 }
