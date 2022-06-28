@@ -21,11 +21,13 @@ const QuizzesList = ({ quizzes }: Props) => {
         <ol className={styles.list}>
           {quizzes.map((quiz) => (
             <li key={quiz.quizId} className={styles.listItem}>
-              <Link to={quiz.quizId} className={styles.link}> {quiz.title} </Link>
+              <Link to={quiz.quizId} className={styles.link}> 
+              <p className={styles.linkTitle}>{quiz.title} </p>
               <div className={styles.progress}>
                 <LinearProgress variant="determinate" value={results[quiz.quizId] || 0}  sx = {{height: "100%"}}/>
               </div>
               <div className={styles.result}>{<span>{results[quiz.quizId] || 0}&#37;</span>}</div>
+              </Link>
             </li>
           ))}
         </ol>

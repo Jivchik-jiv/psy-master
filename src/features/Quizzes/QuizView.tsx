@@ -90,7 +90,7 @@ const QuizView = () => {
   return (
     <>
       {!isCompleted && (
-        <div className={styles.quiz}>
+        <div>
           <div className={styles.titleWrap}>
               <h2 className = {styles.qTitle} >{quiz.title}</h2>
               <p className={styles.qCount}>
@@ -110,9 +110,13 @@ const QuizView = () => {
       )}
       { (isCompleted) && (
         <div>
-           <h1>{quiz.title}</h1>
-           <p>Your result: {correctAnswersCount}/{totalQuestions} correct answers!</p>
-           <Link to={routes.quizzes}>See more quizzes</Link>
+           <h1 className = {styles.qTitle}>{quiz.title}</h1>
+           <div className={styles.quizzesWrap}>
+            <h2 className={styles.resultTitle}>Result</h2>
+            <p className={styles.resultText}>You answered {correctAnswersCount}/{totalQuestions} questions correctly!</p>
+            <Link to={routes.quizzes} className={styles.resultLink}>See more quizzes</Link>
+           </div>
+           
         </div>
       )}
     </>

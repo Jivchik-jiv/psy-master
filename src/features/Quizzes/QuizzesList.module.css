@@ -21,10 +21,7 @@
 }
 
 .listItem {
-    display: flex;
-    padding: 4px 10px;
     border-radius: 3px;
-    align-items: center;
     border: 1px solid #fece00;
     margin: 5px 0;
 }
@@ -33,12 +30,17 @@
 }
 
 .link {
+    display: flex;
     color: inherit;
     text-decoration: none;
-    font-size: 1.5rem;
+    align-items: center;
+    padding: 4px 10px;
+    
+}
+
+.linkTitle {
     width: 250px;
-
-
+    font-size: 1.2em;
 }
 
 .progress {
@@ -49,7 +51,7 @@
 
 .result {
     width: 100px;
-    text-align: center;
+    text-align: right;
 }
 
 /* .link:hover {
@@ -83,13 +85,6 @@
     text-align: right;
 }
 
-/* .answersList{
-    list-style: none;
-    padding: none;
-    display: grid;
-    grid-template-columns: 280px 280px;
-    grid-template-rows: 65px 65px;
-} */
 
 .correct{
     background: green;
@@ -141,3 +136,22 @@
     height: 100%;
 }
 
+
+/* Styles for result */
+
+.resultTitle {
+    text-align: center;
+    color:#fece00;
+    margin-top: 50px;
+}
+
+.resultText {
+    text-align: center;
+}
+
+.resultLink {
+    text-decoration: none;
+    color: #fece00;
+    text-align: center;
+    display: block;
+}

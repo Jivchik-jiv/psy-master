@@ -112,17 +112,6 @@ const QuestionView = ({
                     className={styles.answerInput}
                   />
                 </label>
-                {/* {isAnswered &&
-                  answer === correctAnswer &&
-                  selectedAnswer === correctAnswer && <p>Correct!</p>}
-                {isAnswered &&
-                  answer === correctAnswer &&
-                  selectedAnswer !== correctAnswer && (
-                    <p>This is the correct answer</p>
-                  )}
-                {isAnswered &&
-                  answer !== correctAnswer &&
-                  answer === selectedAnswer && <p>You wrong!</p>} */}
               </li>
             );
           })}
